@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
 export default function Form() {
+    const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [password, setPassword] = useState("");
@@ -24,10 +26,10 @@ export default function Form() {
 
             if (res.ok) {
                 console.log('Data sent successfully');
-                // Reset the form fields
                 setTitle('');
                 setContent('');
                 setPassword('');
+                navigate('/');
             } else {
                 console.log('Error sending data');
             }
@@ -37,7 +39,7 @@ export default function Form() {
     };
 
     return (
-        <>
+        <div style={{ flex: '1 1 auto' }}>
             <form onSubmit={handleSubmit}>
                 <div className='m-5'>
                     <div className="mb-4">
@@ -60,6 +62,6 @@ export default function Form() {
                     </div>
                 </div>
             </form>
-        </>
+        </div>
     )
 }
